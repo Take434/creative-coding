@@ -6,22 +6,22 @@ on:
 
 jobs:
     build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build static files
-        id: build
-        run: |
-          npm i pnpm
-          pnpm ci
-          pnpm build
-
-      - name: Upload static files as artifact
-        id: deployment
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/
-
-  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build static files
+          id: build
+          run: |
+            npm i pnpm
+            pnpm ci
+            pnpm build
+  
+        - name: Upload static files as artifact
+          id: deployment
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: dist/
+          
+    deploy:
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
