@@ -22,6 +22,7 @@ jobs:
             cache: "pnpm"
         - name: Install dependencies
           run: |
+            pnpm approve-builds --all
             pnpm i
             pnpm build
           
