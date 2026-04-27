@@ -1,6 +1,6 @@
 import { ProjectPreview } from "@/components/project-preview/ProjectPreview";
 import type { ProjectPreviewProps } from "@/types/ProjectPreviewProps";
-import styx from "../../assets/ProjectPreviewCovers/styx-cover.png";
+import farbfleck from "../../assets/ProjectPreviewCovers/Farbfleck.png";
 import { Canvas } from "@react-three/fiber";
 import { ConwaysGOL } from "@/components/overview/cgol";
 
@@ -8,37 +8,37 @@ export function Overview() {
   const previews: ProjectPreviewProps[] = [
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },
     {
       name: "Farbfleck",
-      thumbnail: styx,
+      thumbnail: farbfleck,
       description: "Cooles Project",
       projectLink: "/farbfleck",
     },

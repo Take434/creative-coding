@@ -5,7 +5,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Link, Outlet } from "@tanstack/react-router";
-import styx from "../../assets/ProjectPreviewCovers/styx-cover.png";
+import farbfleck from "../../assets/ProjectPreviewCovers/Farbfleck.png";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/lib/states";
 
@@ -17,7 +17,9 @@ export function Layout() {
       <NavigationMenu className="max-w-full pe-10 py-2 bg-primary-foreground">
         <NavigationMenuList className="justify-start">
           <NavigationMenuItem>
-            <NavigationMenuLink render={<img src={styx} className="h-10" />} />
+            <NavigationMenuLink
+              render={<img src={farbfleck} className="h-10" />}
+            />
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
