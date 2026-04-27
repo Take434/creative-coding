@@ -95,14 +95,16 @@ export function Farbfleck() {
         <div>
           <ColorPicker
             className="max-w-sm rounded-md border bg-background p-4 shadow-sm mt-2"
-            onChange={(x) =>
+            onChange={(x) => {
+              const y = x as [number, number, number];
+
               generatePalette({
-                r: x[0] / 255.0,
-                g: x[1] / 255.0,
-                b: x[2] / 255.0,
+                r: y[0] / 255.0,
+                g: y[1] / 255.0,
+                b: y[2] / 255.0,
                 mode: "rgb",
-              } as Rgb)
-            }
+              } as Rgb);
+            }}
           >
             <ColorPickerSelection className="aspect-square" />
             <div className="flex items-center gap-4">

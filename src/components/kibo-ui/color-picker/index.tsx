@@ -40,7 +40,7 @@ type ColorPickerContextValue = {
 };
 
 const ColorPickerContext = createContext<ColorPickerContextValue | undefined>(
-  undefined
+  undefined,
 );
 
 export const useColorPicker = () => {
@@ -70,16 +70,16 @@ export const ColorPicker = ({
   const defaultColor = Color(defaultValue);
 
   const [hue, setHue] = useState(
-    selectedColor.hue() || defaultColor.hue() || 0
+    selectedColor.hue() || defaultColor.hue() || 0,
   );
   const [saturation, setSaturation] = useState(
-    selectedColor.saturationl() || defaultColor.saturationl() || 100
+    selectedColor.saturationl() || defaultColor.saturationl() || 100,
   );
   const [lightness, setLightness] = useState(
-    selectedColor.lightness() || defaultColor.lightness() || 50
+    selectedColor.lightness() || defaultColor.lightness() || 50,
   );
   const [alpha, setAlpha] = useState(
-    selectedColor.alpha() * 100 || defaultColor.alpha() * 100
+    selectedColor.alpha() * 100 || defaultColor.alpha() * 100,
   );
   const [mode, setMode] = useState("hex");
 
@@ -152,11 +152,11 @@ export const ColorPickerSelection = memo(
         const rect = containerRef.current.getBoundingClientRect();
         const x = Math.max(
           0,
-          Math.min(1, (event.clientX - rect.left) / rect.width)
+          Math.min(1, (event.clientX - rect.left) / rect.width),
         );
         const y = Math.max(
           0,
-          Math.min(1, (event.clientY - rect.top) / rect.height)
+          Math.min(1, (event.clientY - rect.top) / rect.height),
         );
         setPositionX(x);
         setPositionY(y);
@@ -166,7 +166,7 @@ export const ColorPickerSelection = memo(
 
         setLightness(lightness);
       },
-      [isDragging, setSaturation, setLightness]
+      [isDragging, setSaturation, setLightness],
     );
 
     useEffect(() => {
@@ -207,7 +207,7 @@ export const ColorPickerSelection = memo(
         />
       </div>
     );
-  }
+  },
 );
 
 ColorPickerSelection.displayName = "ColorPickerSelection";
@@ -313,7 +313,7 @@ export const ColorPickerOutput = ({
   const { mode, setMode } = useColorPicker();
 
   return (
-    <Select onValueChange={setMode} value={mode}>
+    <Select onValueChange={(x: string | null) => setMode(x ?? "")} value={mode}>
       <SelectTrigger className="h-8 w-20 shrink-0 text-xs" {...props}>
         <SelectValue placeholder="Mode" />
       </SelectTrigger>
@@ -339,7 +339,7 @@ const PercentageInput = ({ className, ...props }: PercentageInputProps) => {
         {...props}
         className={cn(
           "h-8 w-[3.25rem] rounded-l-none bg-secondary px-2 text-xs shadow-none",
-          className
+          className,
         )}
       />
       <span className="-translate-y-1/2 absolute top-1/2 right-2 text-muted-foreground text-xs">
@@ -365,7 +365,7 @@ export const ColorPickerFormat = ({
       <div
         className={cn(
           "-space-x-px relative flex w-full items-center rounded-md shadow-sm",
-          className
+          className,
         )}
         {...props}
       >
@@ -390,7 +390,7 @@ export const ColorPickerFormat = ({
       <div
         className={cn(
           "-space-x-px flex items-center rounded-md shadow-sm",
-          className
+          className,
         )}
         {...props}
       >
@@ -399,7 +399,7 @@ export const ColorPickerFormat = ({
             className={cn(
               "h-8 rounded-r-none bg-secondary px-2 text-xs shadow-none",
               index && "rounded-l-none",
-              className
+              className,
             )}
             key={index}
             readOnly
@@ -441,7 +441,7 @@ export const ColorPickerFormat = ({
       <div
         className={cn(
           "-space-x-px flex items-center rounded-md shadow-sm",
-          className
+          className,
         )}
         {...props}
       >
@@ -450,7 +450,7 @@ export const ColorPickerFormat = ({
             className={cn(
               "h-8 rounded-r-none bg-secondary px-2 text-xs shadow-none",
               index && "rounded-l-none",
-              className
+              className,
             )}
             key={index}
             readOnly
