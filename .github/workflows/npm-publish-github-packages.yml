@@ -24,10 +24,9 @@ jobs:
         run: |
           pnpm i --dangerously-allow-all-builds
           pnpm build
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
-          path: ./dist
+          path: ./dist/
 
   deploy:
     environment:
