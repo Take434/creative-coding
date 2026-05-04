@@ -11,6 +11,7 @@ import { Layout } from "@/components/layout/layout.tsx";
 import { Overview } from "@/components/overview/overview.tsx";
 import { Farbfleck } from "@/projects/farbfleck/farbfleck.tsx";
 import { About } from "@/components/about/about";
+import { Unwahrscheinlich } from "@/projects/unwahrscheinlich/unwahrscheinlich";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -31,6 +32,12 @@ const farbfleckRoute = createRoute({
   component: Farbfleck,
 });
 
+const unwahrscheinlichRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "unwahrscheinlich",
+  component: Unwahrscheinlich,
+});
+
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "about",
@@ -41,6 +48,7 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
   aboutRoute,
+  unwahrscheinlichRoute,
 ]);
 const router = createRouter({ routeTree });
 

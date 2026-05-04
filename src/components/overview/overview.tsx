@@ -9,38 +9,14 @@ export function Overview() {
     {
       name: "Farbfleck",
       thumbnail: farbfleck,
-      description: "Cooles Project",
+      description: "Cool Project",
       projectLink: "/farbfleck",
     },
     {
-      name: "Farbfleck",
+      name: "Unwahrscheinlich",
       thumbnail: farbfleck,
-      description: "Cooles Project",
-      projectLink: "/farbfleck",
-    },
-    {
-      name: "Farbfleck",
-      thumbnail: farbfleck,
-      description: "Cooles Project",
-      projectLink: "/farbfleck",
-    },
-    {
-      name: "Farbfleck",
-      thumbnail: farbfleck,
-      description: "Cooles Project",
-      projectLink: "/farbfleck",
-    },
-    {
-      name: "Farbfleck",
-      thumbnail: farbfleck,
-      description: "Cooles Project",
-      projectLink: "/farbfleck",
-    },
-    {
-      name: "Farbfleck",
-      thumbnail: farbfleck,
-      description: "Cooles Project",
-      projectLink: "/farbfleck",
+      description: "Another cool project",
+      projectLink: "/unwahrscheinlich",
     },
   ];
 
