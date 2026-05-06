@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import {
+  createHashHistory,
   createRootRoute,
   createRoute,
   createRouter,
@@ -50,7 +51,8 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   unwahrscheinlichRoute,
 ]);
-const router = createRouter({ routeTree });
+const hashHistory = createHashHistory();
+const router = createRouter({ routeTree, history: hashHistory });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
