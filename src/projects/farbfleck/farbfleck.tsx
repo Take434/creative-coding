@@ -75,7 +75,7 @@ export function Farbfleck() {
 
   return (
     <div className="h-full flex">
-      <Canvas style={{ height: "80vh", aspectRatio: 1 / 1, width: "auto" }}>
+      <Canvas style={{ height: "94vh", aspectRatio: 1 / 1, width: "auto" }}>
         <ambientLight intensity={1} />
         <Shader colors={colors} />
       </Canvas>
