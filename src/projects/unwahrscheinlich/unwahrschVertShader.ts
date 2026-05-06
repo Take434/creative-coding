@@ -4,6 +4,7 @@ varying vec3 vNormal;
 varying vec2 vLightMapUv;
 uniform float u_time;
 uniform float u_roughness;
+uniform float u_amplitude;
 
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson (https://github.com/stegu/webgl-noise)
@@ -83,7 +84,7 @@ float cnoise(vec3 P){
 void main() {
   vec3 transformed = position;
 
-  transformed.z = cnoise(vec3(uv * u_roughness, u_time));
+  transformed.z = cnoise(vec3(uv * u_roughness, u_time)) * u_amplitude;
 
   vec3 terrainNormal = vec3(0., 0., 1.);
 
