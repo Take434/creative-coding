@@ -3,6 +3,7 @@ import type { ProjectPreviewProps } from "@/types/ProjectPreviewProps";
 import farbfleck from "../../assets/ProjectPreviewCovers/Farbfleck.png";
 import { Canvas } from "@react-three/fiber";
 import { ConwaysGOL } from "@/components/overview/cgol";
+import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -14,9 +15,27 @@ export function Overview() {
     },
     {
       name: "Unwahrscheinlich",
-      thumbnail: farbfleck,
+      thumbnail: unwahrscheinlich,
       description: "Another cool project",
       projectLink: "/unwahrscheinlich",
+    },
+    {
+      name: "Loop",
+      thumbnail: farbfleck,
+      description: "Woow, so cool",
+      projectLink: "/loop",
+    },
+    {
+      name: "Fokus",
+      thumbnail: farbfleck,
+      description: "more cool",
+      projectLink: "/fokus",
+    },
+    {
+      name: "Gib mir ein Zeichen",
+      thumbnail: farbfleck,
+      description: "more cool",
+      projectLink: "/gib-mir-ein-zeichen",
     },
   ];
 

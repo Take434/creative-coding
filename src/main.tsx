@@ -13,6 +13,9 @@ import { Overview } from "@/components/overview/overview.tsx";
 import { Farbfleck } from "@/projects/farbfleck/farbfleck.tsx";
 import { About } from "@/components/about/about";
 import { Unwahrscheinlich } from "@/projects/unwahrscheinlich/unwahrscheinlich";
+import { Loop } from "@/projects/loop/loop";
+import { Fokus } from "@/projects/fokus/fokus";
+import { Zeichen } from "@/projects/zeichen/zeichen";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -45,12 +48,34 @@ const aboutRoute = createRoute({
   component: About,
 });
 
+const loopRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "loop",
+  component: Loop,
+});
+
+const fokusRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "fokus",
+  component: Fokus,
+});
+
+const zeichenRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "gib-mir-ein-zeichen",
+  component: Zeichen,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
   aboutRoute,
   unwahrscheinlichRoute,
+  loopRoute,
+  fokusRoute,
+  zeichenRoute,
 ]);
+
 const hashHistory = createHashHistory();
 const router = createRouter({ routeTree, history: hashHistory });
 
