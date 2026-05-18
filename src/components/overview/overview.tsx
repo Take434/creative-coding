@@ -4,6 +4,7 @@ import farbfleck from "../../assets/ProjectPreviewCovers/Farbfleck.png";
 import { Canvas } from "@react-three/fiber";
 import { ConwaysGOL } from "@/components/overview/cgol";
 import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich.png";
+import loop from "../../assets/ProjectPreviewCovers/Loop.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -21,7 +22,7 @@ export function Overview() {
     },
     {
       name: "Loop",
-      thumbnail: farbfleck,
+      thumbnail: loop,
       description: "Woow, so cool",
       projectLink: "/loop",
     },

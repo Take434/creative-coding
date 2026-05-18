@@ -1,4 +1,4 @@
-import { farbfleckFragShader } from "@/projects/farbfleck/fragmentshader";
+import { farbfleckFragShader } from "@/projects/1_farbfleck/fragmentshader";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { converter, type Oklch, random, type Rgb } from "culori";
 import { useMemo, useRef, useState } from "react";

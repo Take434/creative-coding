@@ -10,12 +10,12 @@ import {
 } from "@tanstack/react-router";
 import { Layout } from "@/components/layout/layout.tsx";
 import { Overview } from "@/components/overview/overview.tsx";
-import { Farbfleck } from "@/projects/farbfleck/farbfleck.tsx";
+import { Farbfleck } from "@/projects/1_farbfleck/farbfleck";
 import { About } from "@/components/about/about";
-import { Unwahrscheinlich } from "@/projects/unwahrscheinlich/unwahrscheinlich";
-import { Loop } from "@/projects/loop/loop";
-import { Fokus } from "@/projects/fokus/fokus";
-import { Zeichen } from "@/projects/zeichen/zeichen";
+import { Unwahrscheinlich } from "@/projects/2_unwahrscheinlich/unwahrscheinlich";
+import { Loop } from "@/projects/3_loop/loop";
+import { Fokus } from "@/projects/4_fokus/fokus";
+import { Zeichen } from "@/projects/5_zeichen/zeichen";
 
 const rootRoute = createRootRoute({
   component: Layout,

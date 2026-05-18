@@ -50,9 +50,9 @@ void main(){
     vec2 f = vec2(sin(u_time * .1) * .3 + .5, cos(u_time * .1) * .6 + .5);
 
     pct = renderatom(st, a, pct);
-    pct = renderatom(st, b, pct); 
+    pct = renderatom(st, b, pct);
     pct = renderatom(st, c, pct);
-    pct = renderatom(st, d, pct);    
+    pct = renderatom(st, d, pct);
     pct = renderatom(st, e, pct);
     pct = renderatom(st, f, pct);
 

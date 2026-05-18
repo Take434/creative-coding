@@ -62,7 +62,6 @@ void main() {
     DF += snoise(pos+vel)*.25+.25;
 
     color = vec3( smoothstep(.7,.75,fract(DF)) );
-    color *= vec3(169., 121., 203.) / 255.;
 
     gl_FragColor = vec4(1.0-color,1.0);
 }
