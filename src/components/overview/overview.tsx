@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { ConwaysGOL } from "@/components/overview/cgol";
 import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich.png";
 import loop from "../../assets/ProjectPreviewCovers/Loop.png";
+import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -28,7 +29,7 @@ export function Overview() {
     },
     {
       name: "Fokus",
-      thumbnail: farbfleck,
+      thumbnail: fokus,
       description: "more cool",
       projectLink: "/fokus",
     },
