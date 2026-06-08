@@ -1,3 +1,4 @@
+import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { Frustum, Matrix4, Mesh, Vector3 } from "three";
@@ -60,10 +61,7 @@ export function Fokus() {
     <div className="h-full flex">
       <Canvas style={{ height: "94vh", width: "100vw" }}>
         <ambientLight intensity={3} />
-        <mesh>
-          <planeGeometry args={[42, 8]} />
-          <meshBasicMaterial color="black" />
-        </mesh>
+        <OrbitControls />
         <mesh>
           <sphereGeometry args={[3, 40, 40]} />
           <meshBasicMaterial color="red" />
