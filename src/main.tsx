@@ -16,6 +16,9 @@ import { Unwahrscheinlich } from "@/projects/2_unwahrscheinlich/unwahrscheinlich
 import { Loop } from "@/projects/3_loop/loop";
 import { Fokus } from "@/projects/4_fokus/fokus";
 import { Zeichen } from "@/projects/5_zeichen/zeichen";
+import { Nochmal } from "@/projects/6_nochmal/nochmal";
+import { Wachstum } from "@/projects/7_wachstum/wachstum";
+import { Unterbrechung } from "@/projects/8_unterbrechung/unterbrechung";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -66,6 +69,24 @@ const zeichenRoute = createRoute({
   component: Zeichen,
 });
 
+const nochmalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "nochmal",
+  component: Nochmal,
+});
+
+const wachstumRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "wachstum",
+  component: Wachstum,
+});
+
+const unterbrechungRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "unterbrechung",
+  component: Unterbrechung,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
@@ -74,6 +95,9 @@ const routeTree = rootRoute.addChildren([
   loopRoute,
   fokusRoute,
   zeichenRoute,
+  nochmalRoute,
+  wachstumRoute,
+  unterbrechungRoute,
 ]);
 
 const hashHistory = createHashHistory();

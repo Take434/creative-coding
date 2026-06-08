@@ -39,6 +39,24 @@ export function Overview() {
       description: "more cool",
       projectLink: "/gib-mir-ein-zeichen",
     },
+    {
+      name: "Nochmal",
+      thumbnail: farbfleck,
+      description: "",
+      projectLink: "/nochmal",
+    },
+    {
+      name: "Wachstum",
+      thumbnail: farbfleck,
+      description: "",
+      projectLink: "/wachstum",
+    },
+    {
+      name: "Unterbrechung",
+      thumbnail: farbfleck,
+      description: "",
+      projectLink: "/unterbrechung",
+    },
   ];
 
   return (
