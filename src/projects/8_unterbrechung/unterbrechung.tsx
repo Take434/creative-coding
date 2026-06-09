@@ -5,15 +5,16 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Mesh, Quaternion, Vector3 } from "three";
 
-const boidViewDistance = 2;
+const boidViewDistance = 5;
 const playingField = 50;
-const boidCount = 20;
-const boidMinSpeed = 0.05;
-const boidMaxSpeed = 1;
-const alignWeight = 0.2;
-const cohesWeight = 0.2;
-const seperWeight = 5;
+const boidCount = 100;
+const alignWeight = 1;
+const cohesWeight = 0.4;
+const seperWeight = 1.5;
 const boidMaxForce = 1;
+const wallForceScale = 0.2;
+const boidMinSpeed = 0.05;
+const boidMaxSpeed = 0.8;
 
 export function Unterbrechung() {
   return (
@@ -54,14 +55,18 @@ type boid = {
 function Boids() {
   const boids = useRef<boid[]>(
     Array.from({ length: boidCount }, () => ({
-      position: new Vector3(Math.random(), Math.random(), Math.random()),
+      position: new Vector3(
+        (Math.random() - 0.5) * playingField,
+        (Math.random() - 0.5) * playingField,
+        (Math.random() - 0.5) * playingField,
+      ),
       velocity: new Vector3(Math.random(), 0, 0).normalize(),
     })),
   );
   const meshes = useRef<Mesh[]>([]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  useFrame((_state) => {
+  useFrame((_state, delta) => {
     const partitions: { b: boid; i: number }[][] = [];
 
     //add all boids in partitions
@@ -80,7 +85,13 @@ function Boids() {
       const neighborCells = getNeighboringIndicesFromPos(b.position);
       const neighbors = neighborCells
         .flatMap((x) => partitions[x])
-        .filter((x) => x != undefined);
+        .filter(
+          (x) =>
+            x != undefined &&
+            x.i !== i &&
+            b.position.distanceToSquared(x.b.position) <
+              boidViewDistance * boidViewDistance,
+        );
 
       const alignment = new Vector3();
       const cohesion = new Vector3();
@@ -91,30 +102,20 @@ function Boids() {
         cohesion.add(x.b.position);
 
         const diff = new Vector3().subVectors(b.position, x.b.position);
-        const dist = diff.length();
+        const distSq = diff.lengthSq();
 
-        if (dist > 0) {
-          diff.divideScalar(dist * dist);
+        if (distSq > 0) {
+          diff.divideScalar(distSq);
           seperation.add(diff);
         }
       });
 
       if (neighbors.length > 0) {
-        alignment.divideScalar(neighborCells.length);
-        alignment.normalize();
-        alignment.multiplyScalar(boidMaxSpeed);
+        alignment.divideScalar(neighbors.length);
         alignment.sub(b.velocity);
 
-        cohesion.divideScalar(neighborCells.length);
+        cohesion.divideScalar(neighbors.length);
         cohesion.sub(b.position);
-        cohesion.normalize();
-        cohesion.multiplyScalar(boidMaxSpeed);
-        cohesion.sub(b.velocity);
-
-        seperation.divideScalar(neighborCells.length);
-        seperation.normalize();
-        seperation.multiplyScalar(boidMaxSpeed);
-        seperation.sub(b.velocity);
 
         const accel = new Vector3();
         accel.addScaledVector(alignment, alignWeight);
@@ -123,11 +124,52 @@ function Boids() {
 
         accel.clampLength(0, boidMaxForce);
 
+        b.velocity.multiplyScalar(0.995);
         b.velocity.add(accel);
-        b.velocity.clampLength(boidMinSpeed, boidMaxSpeed);
       }
 
+      const wallForce = new Vector3();
+      const half = playingField / 2;
+      const margin = boidViewDistance * 2;
+
+      if (b.position.x > half - margin) {
+        const t = (b.position.x - (half - margin)) / margin;
+        wallForce.x -= t;
+      }
+
+      if (b.position.x < -half + margin) {
+        const t = (-half + margin - b.position.x) / margin;
+        wallForce.x += t;
+      }
+
+      if (b.position.y > half - margin) {
+        const t = (b.position.y - (half - margin)) / margin;
+        wallForce.y -= t;
+      }
+
+      if (b.position.y < -half + margin) {
+        const t = (-half + margin - b.position.y) / margin;
+        wallForce.y += t;
+      }
+
+      if (b.position.z > half - margin) {
+        const t = (b.position.z - (half - margin)) / margin;
+        wallForce.z -= t;
+      }
+
+      if (b.position.z < -half + margin) {
+        const t = (-half + margin - b.position.z) / margin;
+        wallForce.z += t;
+      }
+
+      wallForce.clampLength(0, boidMaxForce);
+      wallForce.multiplyScalar(wallForceScale);
+      b.velocity.addScaledVector(wallForce, 0.33);
+      b.velocity.clampLength(boidMinSpeed, boidMaxSpeed);
       b.position.add(b.velocity);
+      b.position.x = Math.max(-half, Math.min(half, b.position.x));
+      b.position.y = Math.max(-half, Math.min(half, b.position.y));
+      b.position.z = Math.max(-half, Math.min(half, b.position.z));
       meshes.current[i].position.copy(b.position);
     });
   });
@@ -154,27 +196,29 @@ function Boids() {
  * gets neighboring indices (hashed), includes self
  */
 const getNeighboringIndicesFromPos = (pos: Vector3): number[] => {
-  return [
-    hashedIndexFromPostion(pos),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(boidViewDistance, 0, 0)),
-    ),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(-boidViewDistance, 0, 0)),
-    ),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(0, boidViewDistance, 0)),
-    ),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(0, -boidViewDistance, 0)),
-    ),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(0, 0, boidViewDistance)),
-    ),
-    hashedIndexFromPostion(
-      pos.clone().add(new Vector3(0, 0, -boidViewDistance)),
-    ),
-  ];
+  const neighbors = [];
+
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dz = -1; dz <= 1; dz++) {
+        neighbors.push(
+          hashedIndexFromPostion(
+            pos
+              .clone()
+              .add(
+                new Vector3(
+                  boidViewDistance * dx,
+                  boidViewDistance * dy,
+                  boidViewDistance * dz,
+                ),
+              ),
+          ),
+        );
+      }
+    }
+  }
+
+  return neighbors;
 };
 
 const hashedIndexFromPostion = (pos: Vector3): number => {
