@@ -6,6 +6,7 @@ import { ConwaysGOL } from "@/components/overview/cgol";
 import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich.png";
 import loop from "../../assets/ProjectPreviewCovers/Loop.png";
 import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
+import unterbrechung from "../../assets/ProjectPreviewCovers/Unterbrechung.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -53,7 +54,7 @@ export function Overview() {
     },
     {
       name: "Unterbrechung",
-      thumbnail: farbfleck,
+      thumbnail: unterbrechung,
       description: "",
       projectLink: "/unterbrechung",
     },
