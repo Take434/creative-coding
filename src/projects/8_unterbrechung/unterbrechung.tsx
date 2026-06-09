@@ -7,7 +7,7 @@ import { Mesh, Quaternion, Vector3 } from "three";
 
 const boidViewDistance = 5;
 const playingField = 50;
-const boidCount = 100;
+const boidCount = 500;
 const alignWeight = 1;
 const cohesWeight = 0.4;
 const seperWeight = 1.5;
@@ -64,12 +64,27 @@ function Boids() {
     })),
   );
   const meshes = useRef<Mesh[]>([]);
-
-  const up = new Vector3(0, 1, 0);
   const quat = new Quaternion();
+  const explosionMesh = useRef<Mesh>(null);
+
+  const explosion = useRef<{
+    start: number;
+    end: number;
+    center: Vector3;
+    radius: number;
+  }>({
+    start: 5,
+    end: 5.5,
+    center: new Vector3(
+      (Math.random() - 0.5) * playingField,
+      (Math.random() - 0.5) * playingField,
+      (Math.random() - 0.5) * playingField,
+    ),
+    radius: (Math.random() * playingField) / 2 + 5,
+  });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  useFrame((_state, delta) => {
+  useFrame((state) => {
     const partitions: { b: boid; i: number }[][] = [];
 
     //add all boids in partitions
@@ -82,6 +97,39 @@ function Boids() {
 
       partitions[j].push({ b, i });
     });
+
+    const densestPartition = [...partitions].sort(
+      (a, b) => b.length - a.length,
+    )[0];
+    const newCenter = densestPartition[0].b.position;
+
+    if (state.clock.elapsedTime > explosion.current.end) {
+      const start = state.clock.elapsedTime + (Math.random() + 0.5) * 2;
+      explosion.current = {
+        start: start,
+        end: start + 0.5,
+        center: newCenter,
+        radius: (Math.random() * playingField) / 2 + 5,
+      };
+    }
+
+    if (explosionMesh.current) {
+      const active =
+        state.clock.elapsedTime >= explosion.current.start &&
+        state.clock.elapsedTime <= explosion.current.end;
+
+      explosionMesh.current.visible = active;
+
+      if (active) {
+        explosionMesh.current.position.copy(explosion.current.center);
+        const progress =
+          (state.clock.elapsedTime - explosion.current.start) /
+          (explosion.current.end - explosion.current.start);
+        const currentRadius = explosion.current.radius * progress;
+
+        explosionMesh.current.scale.setScalar(currentRadius);
+      }
+    }
 
     //check neighboring partitions for each boid and compute move vector
     boids.current.forEach((b, i) => {
@@ -169,6 +217,21 @@ function Boids() {
       wallForce.multiplyScalar(wallForceScale);
       b.velocity.addScaledVector(wallForce, 0.33);
       b.velocity.clampLength(boidMinSpeed, boidMaxSpeed);
+
+      if (state.clock.elapsedTime > explosion.current.start) {
+        const dir = b.position.clone().sub(explosion.current.center);
+        const dist = dir.length();
+
+        if (dist < explosion.current.radius) {
+          const t = dist / explosion.current.radius;
+
+          const strength = (1 - t) * (1 - t);
+          dir.normalize();
+
+          b.velocity.addScaledVector(dir, strength * 3);
+        }
+      }
+
       b.position.add(b.velocity);
       b.position.x = Math.max(-half, Math.min(half, b.position.x));
       b.position.y = Math.max(-half, Math.min(half, b.position.y));
@@ -195,6 +258,10 @@ function Boids() {
           <meshBasicMaterial color="red" />
         </mesh>
       ))}
+      <mesh ref={explosionMesh}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshBasicMaterial color="#66ccff" transparent opacity={0.2} />
+      </mesh>
     </group>
   );
 }
