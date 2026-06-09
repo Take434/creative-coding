@@ -65,6 +65,9 @@ function Boids() {
   );
   const meshes = useRef<Mesh[]>([]);
 
+  const up = new Vector3(0, 1, 0);
+  const quat = new Quaternion();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useFrame((_state, delta) => {
     const partitions: { b: boid; i: number }[][] = [];
@@ -170,7 +173,11 @@ function Boids() {
       b.position.x = Math.max(-half, Math.min(half, b.position.x));
       b.position.y = Math.max(-half, Math.min(half, b.position.y));
       b.position.z = Math.max(-half, Math.min(half, b.position.z));
+
       meshes.current[i].position.copy(b.position);
+      const dir = b.velocity.clone().normalize();
+      quat.setFromUnitVectors(new Vector3(0, 1, 0), dir);
+      meshes.current[i].quaternion.copy(quat);
     });
   });
 
@@ -184,7 +191,7 @@ function Boids() {
             if (m) meshes.current[i] = m;
           }}
         >
-          <sphereGeometry args={[0.5, 40, 40]} />
+          <coneGeometry args={[0.4, 1.2, 8]} />
           <meshBasicMaterial color="red" />
         </mesh>
       ))}
