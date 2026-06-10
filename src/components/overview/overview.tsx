@@ -7,6 +7,7 @@ import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich
 import loop from "../../assets/ProjectPreviewCovers/Loop.png";
 import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
 import unterbrechung from "../../assets/ProjectPreviewCovers/Unterbrechung.png";
+import wip from "../../assets/ProjectPreviewCovers/wip.jpg";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -36,19 +37,19 @@ export function Overview() {
     },
     {
       name: "Gib mir ein Zeichen",
-      thumbnail: farbfleck,
+      thumbnail: wip,
       description: "more cool",
       projectLink: "/gib-mir-ein-zeichen",
     },
     {
       name: "Nochmal",
-      thumbnail: farbfleck,
+      thumbnail: wip,
       description: "",
       projectLink: "/nochmal",
     },
     {
       name: "Wachstum",
-      thumbnail: farbfleck,
+      thumbnail: wip,
       description: "",
       projectLink: "/wachstum",
     },
@@ -70,7 +71,7 @@ export function Overview() {
         </div>
       </div>
       <Canvas
-        style={{ position: "absolute" }}
+        style={{ position: "fixed" }}
         className="w-screen h-full top-0 left-0 overflow-hidden -z-10"
       >
         <ambientLight intensity={1} />

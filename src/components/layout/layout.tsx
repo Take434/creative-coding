@@ -14,8 +14,8 @@ export function Layout() {
 
   return (
     <>
-      <NavigationMenu className="max-w-full pe-10 py-2 bg-primary-foreground">
-        <NavigationMenuList className="justify-start">
+      <NavigationMenu className="max-w-screen pe-10 py-2 bg-primary-foreground sticky top-0">
+        <NavigationMenuList className="justify-start w-full">
           <NavigationMenuItem>
             <NavigationMenuLink
               render={<img src={farbfleck} className="h-10" />}
