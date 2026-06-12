@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-var mouse_sense = 0.1
+var mouse_sense = 0.15
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
