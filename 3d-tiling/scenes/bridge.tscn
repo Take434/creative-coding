@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cbgamvlktelfa"]
+
+[ext_resource type="PackedScene" uid="uid://btproax2w76bx" path="res://assets/bridge.blend" id="1_7ct4w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ct4w"]
+size = Vector3(6.083069, 0.97558594, 20.069275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_im2sa"]
+size = Vector3(0.7481003, 3.5754242, 20.057549)
+
+[node name="Bridge" type="StaticBody3D" unique_id=1324957476]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1438815428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012298584, 0.5045476, -0.23770142)
+shape = SubResource("BoxShape3D_7ct4w")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1751846648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.611544, 1.7642059, -0.23085594)
+shape = SubResource("BoxShape3D_im2sa")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=301991386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6243987, 1.741066, -0.24098587)
+shape = SubResource("BoxShape3D_im2sa")
+
+[node name="bridge" parent="." unique_id=1567159830 instance=ExtResource("1_7ct4w")]
