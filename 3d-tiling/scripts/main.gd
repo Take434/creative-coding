@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	var spawn_tile_callable = Callable(self, "spawn_tile");
 	spawn_tile_timer = Timer.new()
-	spawn_tile_timer.wait_time = 2
+	spawn_tile_timer.wait_time = .1
 	spawn_tile_timer.one_shot = false
 	spawn_tile_timer.connect("timeout", spawn_tile_callable)
 	add_child(spawn_tile_timer)
@@ -43,6 +43,10 @@ func spawn_tile() -> void:
 	for t in tile_types:
 		var matches = get_connector_matches(t, chosen_frontier["required"], chosen_frontier["relevant"])
 		possibilities.append_array(matches)
+		
+	if possibilities.size() == 0:
+		frontier.erase(frontier_position)
+		return
 		
 	# chose one
 	var index = rng.randi_range(0, possibilities.size() - 1)
@@ -68,7 +72,7 @@ func spawn_tile() -> void:
 			old_frontier["relevant"] |= dir.opposite
 			
 			if new_connector & dir.mask:
-				old_frontier["required"] |= new_connector & dir.opposite
+				old_frontier["required"] |= dir.opposite
 			
 			frontier[f] = old_frontier
 			
@@ -101,7 +105,6 @@ func spawn_tile() -> void:
 	instance.quaternion = next_tile["rot"]
 	instance.position = frontier_position
 	add_child(instance)
-
 
 func get_connector_matches(t, required: int, relevant: int):
 	var matches = []

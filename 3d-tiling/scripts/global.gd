@@ -45,6 +45,6 @@ const DIRS = [
 ]
 
 
-const QX = Quaternion(Vector3.RIGHT, PI/2)
+const QX = Quaternion(Vector3.RIGHT, -PI/2)
 const QY = Quaternion(Vector3.UP, PI/2)
-const QZ = Quaternion(Vector3.FORWARD, PI/2)
+const QZ = Quaternion(Vector3(0, 0, 1), PI/2)

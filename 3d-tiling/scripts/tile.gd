@@ -29,14 +29,33 @@ static func generate_orientations(connector):
 		mesh_rotatios.append(current.quat)
 
 		# Apply rotations (key step)
-		#_try_add(seen, queue, rotate_connector_x(mask), quat * QX)
-		_try_add(seen, queue, rotate_connector_y(mask), quat * Global.QY)
-		#_try_add(seen, queue, rotate_connector_z(mask), quat * QZ)
+		#_try_add(seen, queue, rotate_connector_x(mask), Global.QX * quat)
+		_try_add(seen, queue, rotate_connector_y(mask), Global.QY * quat)
+		#_try_add(seen, queue, rotate_connector_z(mask), Global.QZ * quat)
+
+	for i in range(connector_rotations.size()):
+		print(
+			mask_to_string(connector_rotations[i]),
+			"  ",
+			mesh_rotatios[i]
+		)
 
 	return {
 		"connectors": connector_rotations,
 		"meshes": mesh_rotatios
 	}
+
+static func mask_to_string(mask):
+	var s = ""
+
+	if mask & Global.masks.F: s += "F"
+	if mask & Global.masks.R: s += "R"
+	if mask & Global.masks.B: s += "B"
+	if mask & Global.masks.L: s += "L"
+	if mask & Global.masks.U: s += "U"
+	if mask & Global.masks.D: s += "D"
+
+	return s
 
 static func _try_add(seen, queue, new_mask, new_quat):
 	if seen.has(new_mask):
