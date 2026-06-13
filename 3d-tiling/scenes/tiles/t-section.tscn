@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://crj6qgcswgp21"]
+
+[ext_resource type="PackedScene" uid="uid://d3hexp6rsows5" path="res://assets/T-Section.blend" id="1_p8sx0"]
+[ext_resource type="Script" uid="uid://k2kqrfh7omlj" path="res://scripts/t_section.gd" id="2_568v7"]
+
+[node name="T-Section" unique_id=690462703 instance=ExtResource("1_p8sx0")]
+script = ExtResource("2_568v7")

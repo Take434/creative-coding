@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbgamvlktelfa"]
+
+[ext_resource type="Script" uid="uid://bmaq7prminmjj" path="res://scripts/bridge.gd" id="1_3cciu"]
+[ext_resource type="PackedScene" uid="uid://btproax2w76bx" path="res://assets/bridge.blend" id="2_v32sy"]
+
+[node name="bridge" unique_id=517621374 instance=ExtResource("2_v32sy")]
+script = ExtResource("1_3cciu")

@@ -1,10 +1,10 @@
-class_name Bridge
+class_name TSection
 extends Tile
 
-static var scene = preload("res://scenes/tiles/bridge.tscn")
+static var scene = preload("res://scenes/tiles/t-section.tscn")
 
-#order of bits -> FRBLUD
-static var connector = 0b101000
+# order of bits -> FRBLUD
+static var connector = 0b111000
 static var connector_rotations: Array[int] = []
 static var mesh_rotations = []
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://btproax2w76bx"
-path="res://.godot/imported/bridge.blend-5dde9845893b02a4f815b7f8acb48c1a.scn"
+uid="uid://d0h4l1chdi5dj"
+path="res://.godot/imported/T-Section - Kopie.blend-348552bc653043b57a34e40ebddf88bd.scn"
 
 [deps]
 
-source_file="res://assets/bridge.blend"
-dest_files=["res://.godot/imported/bridge.blend-5dde9845893b02a4f815b7f8acb48c1a.scn"]
+source_file="res://assets/T-Section - Kopie.blend"
+dest_files=["res://.godot/imported/T-Section - Kopie.blend-348552bc653043b57a34e40ebddf88bd.scn"]
 
 [params]
 
@@ -37,13 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"nodes": {
-"PATH:Cube": {
-"generate/physics": true
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
