@@ -57,10 +57,23 @@ func spawn_tile() -> void:
 	# update frontiers
 	var new_frontier_directions = []
 	
-	for dir in range(Global.masks.values().size()):
-		if new_connector & Global.masks.values()[dir]:
-			var f = frontier_position + Global.directions.values()[dir]
-			if !grid.has(f):
+	for dir in Global.DIRS:
+		var f = frontier_position + dir.offset
+		
+		if grid.has(f):
+			continue
+		
+		if frontier.has(f):
+			var old_frontier = frontier[f]
+			old_frontier["relevant"] |= dir.opposite
+			
+			if new_connector & dir.mask:
+				old_frontier["required"] |= new_connector & dir.opposite
+			
+			frontier[f] = old_frontier
+			
+		else:
+			if new_connector & dir.mask:
 				new_frontier_directions.append(f)
 	
 	# for each frontier direction
@@ -71,13 +84,12 @@ func spawn_tile() -> void:
 		var required = 0
 		var relevant = 0
 		
-		for dir in range(Global.masks.values().size()):
-			var dir_mask = Global.masks.values()[dir]
-			var dir_vec = new_front + Global.directions.values()[dir]
-			if grid.has(dir_vec):
-				relevant |= dir_mask
-				if grid[dir_vec] & dir_mask:
-					required |= dir_mask
+		for dir in Global.DIRS:
+			var neighbor_pos = new_front + dir.offset
+			if grid.has(neighbor_pos):
+				relevant |= dir.mask
+				if grid[neighbor_pos] & dir.opposite:
+					required |= dir.mask
 		
 		frontier[new_front] = {
 			"required": required,
