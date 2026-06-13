@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://5gf0fqhk7m45"]
+
+[ext_resource type="PackedScene" uid="uid://cplff0ed8lrxe" path="res://assets/X-Cross.blend" id="1_l0pxt"]
+[ext_resource type="Script" uid="uid://bxenkgi6jnv6k" path="res://scripts/x_cross.gd" id="2_1eoug"]
+
+[node name="X-Cross" unique_id=517417267 instance=ExtResource("1_l0pxt")]
+script = ExtResource("2_1eoug")

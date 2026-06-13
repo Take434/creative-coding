@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddfbfe3attpga"]
+
+[ext_resource type="PackedScene" uid="uid://cgmpo24opcs30" path="res://assets/ElevatorDown.blend" id="1_5wnhk"]
+[ext_resource type="Script" uid="uid://dmdris0f3y2et" path="res://scripts/elevator_down.gd" id="2_mdtgm"]
+
+[node name="ElevatorDown" unique_id=181054072 instance=ExtResource("1_5wnhk")]
+script = ExtResource("2_mdtgm")

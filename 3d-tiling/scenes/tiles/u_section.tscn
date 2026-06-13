@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c2o7pcqati4y5"]
+
+[ext_resource type="PackedScene" uid="uid://860dmvnweuh" path="res://assets/U-Section.blend" id="1_cghvj"]
+[ext_resource type="Script" uid="uid://iso0s8uifmx4" path="res://scripts/u_section.gd" id="2_bo56g"]
+
+[node name="U-Section" unique_id=1766680592 instance=ExtResource("1_cghvj")]
+script = ExtResource("2_bo56g")

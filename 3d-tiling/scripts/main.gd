@@ -1,8 +1,12 @@
 extends Node3D
 
 var tile_types = [
+	UTile,
+	XCross,
+	Bridge,
 	TSection,
-	Bridge
+	ElevDown,
+	ElevUp
 ]
 
 var spawn_tile_timer: Timer
@@ -33,6 +37,10 @@ func _ready() -> void:
 func spawn_tile() -> void:
 	# choose where to place next tile
 	var keys = frontier.keys()
+	
+	if keys.size() <= 0:
+		return
+	
 	var ind = rng.randi_range(0, keys.size() - 1)
 	var frontier_position = keys[ind]
 	var chosen_frontier = frontier[frontier_position]
