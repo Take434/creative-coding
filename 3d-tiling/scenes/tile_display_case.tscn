@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ng8nh55qmgfp"]
+
+[ext_resource type="Script" uid="uid://bdkgpbqxwlibg" path="res://scripts/tile_display_case.gd" id="1_hmp7u"]
+[ext_resource type="Environment" uid="uid://bh0j4hvpijtdn" path="res://env.tres" id="2_hmp7u"]
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=2058635745]
+script = ExtResource("1_hmp7u")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=719896960]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1191672624]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(180, 180)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=209435094]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1243519463]
+transform = Transform3D(-3.607763e-08, -0.564607, 0.82535994, -2.4679753e-08, 0.82535994, 0.564607, -1, 3.5527137e-15, -4.3711392e-08, 7.333528, 6.482709, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D" unique_id=83231608]
+environment = ExtResource("2_hmp7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=177729003]
+layout_mode = 2
+text = "Bridge Element"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=223413908]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer" unique_id=1528275121]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=2140252382]
+layout_mode = 2
+text = "Active"
+fit_content = true
+autowrap_mode = 0

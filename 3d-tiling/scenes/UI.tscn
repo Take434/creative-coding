@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://6b443swskgvw"]
+
+[ext_resource type="Script" uid="uid://c076mv07qdk8o" path="res://scripts/ui.gd" id="1_ro3t7"]
+
+[node name="ScrollContainer" type="ScrollContainer" unique_id=1913339781]
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_ro3t7")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1826184959]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer" unique_id=1072079819]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.21176471, 0.5372549, 0.78431374, 0.45882353)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer" unique_id=2017195903]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2" unique_id=1752650300]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 50
+text = "Menu"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2" unique_id=1584411924]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer" unique_id=2022177741]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1506671190]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Modify which rotations are enabled during tile permutation"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=320177371]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1073500605]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=75399955]
+layout_mode = 2
+text = "X-Achsis Rotation"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1240233114]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1447693688]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1817832150]
+layout_mode = 2
+text = "Y-Achsis Rotation"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=440167344]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=383656896]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=754515307]
+layout_mode = 2
+text = "Z-Achsis Rotation"
+fit_content = true
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer" unique_id=1900573805]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=2067038187]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Modify where new Tiles can be placed by the algorithm"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" unique_id=377424103]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=247223158]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=2134669510]
+layout_mode = 2
+text = "Only place connecting Tiles"
+fit_content = true
+autowrap_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer2" unique_id=1752876354]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2" unique_id=1471989777]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer2/HBoxContainer2" unique_id=352580547]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Cancel"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer2/HBoxContainer2" unique_id=1160153176]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Reload Generation"

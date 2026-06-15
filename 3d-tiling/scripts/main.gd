@@ -1,15 +1,10 @@
 extends Node3D
 
-var tile_types = [
-	UTile,
-	XCross,
-	Bridge,
-	TSection,
-	ElevDown,
-	ElevUp
-]
+# ui stuff
+@onready var ui_container = $UI
 
-var spawn_tile_timer: Timer
+# tiling stuff
+var spawn_tile_timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 
 var grid := { }
@@ -21,18 +16,30 @@ var frontier := {
 }
 
 func _ready() -> void:
-	for t in tile_types:
+	for t in Global.tile_types:
 		t.permute()
 	
 	spawn_tile()
 	
 	var spawn_tile_callable = Callable(self, "spawn_tile");
-	spawn_tile_timer = Timer.new()
 	spawn_tile_timer.wait_time = .1
 	spawn_tile_timer.one_shot = false
 	spawn_tile_timer.connect("timeout", spawn_tile_callable)
 	add_child(spawn_tile_timer)
 	spawn_tile_timer.start()
+
+# ui handling
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") && ui_container.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+		ui_container.visible = false
+		spawn_tile_timer.paused = false
+		Global.ui_visible = false
+	elif event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		ui_container.visible = true
+		spawn_tile_timer.paused = true
+		Global.ui_visible = true
 
 func spawn_tile() -> void:
 	# choose where to place next tile
@@ -48,7 +55,7 @@ func spawn_tile() -> void:
 	# get possible tiles
 	var possibilities = []
 	
-	for t in tile_types:
+	for t in Global.tile_types:
 		var matches = get_connector_matches(t, chosen_frontier["required"], chosen_frontier["relevant"])
 		possibilities.append_array(matches)
 		

@@ -29,9 +29,9 @@ static func generate_orientations(connector):
 		mesh_rotatios.append(current.quat)
 
 		# Apply rotations (key step)
-		#_try_add(seen, queue, rotate_connector_x(mask), Global.QX * quat)
+		_try_add(seen, queue, rotate_connector_x(mask), Global.QX * quat)
 		_try_add(seen, queue, rotate_connector_y(mask), Global.QY * quat)
-		#_try_add(seen, queue, rotate_connector_z(mask), Global.QZ * quat)
+		_try_add(seen, queue, rotate_connector_z(mask), Global.QZ * quat)
 
 	for i in range(connector_rotations.size()):
 		print(

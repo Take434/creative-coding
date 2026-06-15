@@ -1,5 +1,16 @@
 extends Node
 
+var tile_types = [
+	UTile,
+	XCross,
+	Bridge,
+	TSection,
+	ElevDown,
+	ElevUp
+]
+
+var ui_visible = false
+
 const masks = {
 	"F": 1 << 5,
 	"R": 1 << 4,
@@ -43,7 +54,6 @@ const DIRS = [
 		"opposite": masks.U
 	}
 ]
-
 
 const QX = Quaternion(Vector3.RIGHT, -PI/2)
 const QY = Quaternion(Vector3.UP, PI/2)

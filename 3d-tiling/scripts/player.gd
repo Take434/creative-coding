@@ -12,28 +12,26 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-	elif event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			rotate_y(deg_to_rad(-event.relative.x * mouse_sense))
 			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sense))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 	
-	if event.is_action_pressed("flight"):
+	if event.is_action_pressed("flight") && !Global.ui_visible:
 		flying = !flying
 
 func _physics_process(delta: float) -> void:
+	if Global.ui_visible:
+		return
+	
 	## Add the gravity.
 	if !is_on_floor() && !flying:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") && is_on_floor() && !flying:
-		velocity.y = SPEED
+		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("ui_accept") && flying:
 		velocity.y = SPEED
