@@ -2,6 +2,7 @@ class_name TSection
 extends Tile
 
 static var scene = preload("res://scenes/tiles/t-section.tscn")
+static var title = "T-Section Element"
 
 # order of bits -> FRBLUD
 static var connector = 0b111000

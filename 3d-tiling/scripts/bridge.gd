@@ -2,6 +2,7 @@ class_name Bridge
 extends Tile
 
 static var scene = preload("res://scenes/tiles/bridge.tscn")
+static var title = "Bridge Element"
 
 #order of bits -> FRBLUD
 static var connector = 0b101000

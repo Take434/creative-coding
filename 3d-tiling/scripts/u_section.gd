@@ -2,6 +2,7 @@ class_name UTile
 extends Tile
 
 static var scene = preload("res://scenes/tiles/u_section.tscn")
+static var title = "Curve Element"
 
 #order of bits -> FRBLUD
 static var connector = 0b110000

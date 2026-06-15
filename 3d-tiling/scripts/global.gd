@@ -1,5 +1,9 @@
 extends Node
 
+signal hide_ui
+signal show_ui
+signal settings_changed
+
 var tile_types = [
 	UTile,
 	XCross,
@@ -8,6 +12,18 @@ var tile_types = [
 	ElevDown,
 	ElevUp
 ]
+
+var settings = {
+	"active_tiles": tile_types.duplicate(),
+	"just_connection": true,
+	"just_2d": false,
+	"spawn_speed": 0.8,
+	"active_rotations": {
+		"x": true,
+		"y": true,
+		"z": true
+	}
+}
 
 var ui_visible = false
 

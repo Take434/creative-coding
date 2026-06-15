@@ -2,6 +2,7 @@ class_name XCross
 extends Tile
 
 static var scene = preload("res://scenes/tiles/x_cross.tscn")
+static var title = "Cross Element"
 
 #order of bits -> FRBLUD
 static var connector = 0b111100

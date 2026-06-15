@@ -16,30 +16,37 @@ var frontier := {
 }
 
 func _ready() -> void:
-	for t in Global.tile_types:
+	for t in Global.settings.active_tiles:
 		t.permute()
+	
+	Global.hide_ui.connect(hide_ui)
+	Global.show_ui.connect(show_ui)
+	Global.settings_changed.connect(settings_changed)
 	
 	spawn_tile()
 	
 	var spawn_tile_callable = Callable(self, "spawn_tile");
-	spawn_tile_timer.wait_time = .1
+	spawn_tile_timer.wait_time = 1 - Global.settings.spawn_speed
 	spawn_tile_timer.one_shot = false
 	spawn_tile_timer.connect("timeout", spawn_tile_callable)
 	add_child(spawn_tile_timer)
 	spawn_tile_timer.start()
 
-# ui handling
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") && ui_container.visible:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-		ui_container.visible = false
-		spawn_tile_timer.paused = false
-		Global.ui_visible = false
-	elif event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		ui_container.visible = true
-		spawn_tile_timer.paused = true
-		Global.ui_visible = true
+func hide_ui() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+	ui_container.visible = false
+	spawn_tile_timer.paused = false
+	Global.ui_visible = false	
+
+func show_ui() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	ui_container.visible = true
+	spawn_tile_timer.paused = true
+	Global.ui_visible = true
+
+func settings_changed() -> void:
+	hide_ui()
+	get_tree().reload_current_scene()
 
 func spawn_tile() -> void:
 	# choose where to place next tile
@@ -55,7 +62,7 @@ func spawn_tile() -> void:
 	# get possible tiles
 	var possibilities = []
 	
-	for t in Global.tile_types:
+	for t in Global.settings.active_tiles:
 		var matches = get_connector_matches(t, chosen_frontier["required"], chosen_frontier["relevant"])
 		possibilities.append_array(matches)
 		
@@ -77,6 +84,11 @@ func spawn_tile() -> void:
 	var new_frontier_directions = []
 	
 	for dir in Global.DIRS:
+		var is_up = dir.mask == Global.masks.U
+		var is_down = dir.mask == Global.masks.D
+		if Global.settings.just_2d && (is_up || is_down):
+			continue
+		
 		var f = frontier_position + dir.offset
 		
 		if grid.has(f):
@@ -92,7 +104,10 @@ func spawn_tile() -> void:
 			frontier[f] = old_frontier
 			
 		else:
-			if new_connector & dir.mask:
+			if Global.settings.just_connection:
+				if new_connector & dir.mask:
+					new_frontier_directions.append(f)
+			else: 
 				new_frontier_directions.append(f)
 	
 	# for each frontier direction

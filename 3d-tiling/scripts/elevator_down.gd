@@ -2,6 +2,7 @@ class_name ElevDown
 extends Tile
 
 static var scene = preload("res://scenes/tiles/elevator_down.tscn")
+static var title = "Downward Element"
 
 #order of bits -> FRBLUD
 static var connector = 0b001001
