@@ -21,6 +21,8 @@ Global="*uid://d4etpduroxbc6"
 
 [display]
 
+window/size/viewport_width=1440
+window/size/viewport_height=810
 window/stretch/mode="viewport"
 
 [input]

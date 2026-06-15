@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://c076mv07qdk8o" path="res://scripts/ui.gd" id="1_ro3t7"]
 
 [node name="ScrollContainer" type="ScrollContainer" unique_id=1913339781]
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1440.0
+offset_bottom = 810.0
 script = ExtResource("1_ro3t7")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1826184959]

@@ -8,14 +8,14 @@ var flying = false
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") && Global.ui_visible:
 		Global.hide_ui.emit()
 	elif event.is_action_pressed("ui_cancel"):
 		Global.show_ui.emit()
+		
+	if event is InputEventMouseButton && !Global.ui_visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:

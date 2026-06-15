@@ -8,6 +8,7 @@ import loop from "../../assets/ProjectPreviewCovers/Loop.png";
 import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
 import unterbrechung from "../../assets/ProjectPreviewCovers/Unterbrechung.png";
 import wip from "../../assets/ProjectPreviewCovers/wip.jpg";
+import zusammensetzung from "../../assets/ProjectPreviewCovers/Zusammensetzung.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -58,6 +59,12 @@ export function Overview() {
       thumbnail: unterbrechung,
       description: "",
       projectLink: "/unterbrechung",
+    },
+    {
+      name: "Zusammensetzung",
+      thumbnail: zusammensetzung,
+      description: "",
+      projectLink: "/zusammensetzung",
     },
   ];
 

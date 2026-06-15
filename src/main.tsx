@@ -19,6 +19,7 @@ import { Zeichen } from "@/projects/5_zeichen/zeichen";
 import { Nochmal } from "@/projects/6_nochmal/nochmal";
 import { Wachstum } from "@/projects/7_wachstum/wachstum";
 import { Unterbrechung } from "@/projects/8_unterbrechung/unterbrechung";
+import { Zusammensetzung } from "@/projects/9_zusammensetzung/zusammensetzung";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -87,6 +88,12 @@ const unterbrechungRoute = createRoute({
   component: Unterbrechung,
 });
 
+const zusammensetzungRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "zusammensetzung",
+  component: Zusammensetzung,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
@@ -98,6 +105,7 @@ const routeTree = rootRoute.addChildren([
   nochmalRoute,
   wachstumRoute,
   unterbrechungRoute,
+  zusammensetzungRoute,
 ]);
 
 const hashHistory = createHashHistory();
