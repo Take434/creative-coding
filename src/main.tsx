@@ -20,6 +20,9 @@ import { Nochmal } from "@/projects/6_nochmal/nochmal";
 import { Wachstum } from "@/projects/7_wachstum/wachstum";
 import { Unterbrechung } from "@/projects/8_unterbrechung/unterbrechung";
 import { Zusammensetzung } from "@/projects/9_zusammensetzung/zusammensetzung";
+import { Disconnect } from "@/projects/10_disconnect/disconnect";
+import { Klartext } from "@/projects/11_klartext/klartext";
+import { Verfolgt } from "@/projects/12_verfolgt/verfolgt";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -94,6 +97,24 @@ const zusammensetzungRoute = createRoute({
   component: Zusammensetzung,
 });
 
+const disconnectRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "disconnect",
+  component: Disconnect,
+});
+
+const klartextRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "klartext",
+  component: Klartext,
+});
+
+const verfolgtRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "verfolgt",
+  component: Verfolgt,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
@@ -106,6 +127,9 @@ const routeTree = rootRoute.addChildren([
   wachstumRoute,
   unterbrechungRoute,
   zusammensetzungRoute,
+  disconnectRoute,
+  klartextRoute,
+  verfolgtRoute,
 ]);
 
 const hashHistory = createHashHistory();

@@ -66,6 +66,24 @@ export function Overview() {
       description: "",
       projectLink: "/zusammensetzung",
     },
+    {
+      name: "Dis/Connect",
+      thumbnail: wip,
+      description: "",
+      projectLink: "/disconnect",
+    },
+    {
+      name: "Klartext",
+      thumbnail: wip,
+      description: "",
+      projectLink: "/klartext",
+    },
+    {
+      name: "Verfolgt",
+      thumbnail: wip,
+      description: "",
+      projectLink: "/verfolgt",
+    },
   ];
 
   return (
