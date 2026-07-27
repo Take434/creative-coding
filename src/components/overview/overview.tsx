@@ -9,6 +9,8 @@ import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
 import unterbrechung from "../../assets/ProjectPreviewCovers/Unterbrechung.png";
 import wip from "../../assets/ProjectPreviewCovers/wip.jpg";
 import zusammensetzung from "../../assets/ProjectPreviewCovers/Zusammensetzung.png";
+import zeichen from "../../assets/ProjectPreviewCovers/Zeichen.png";
+import nochmal from "../../assets/ProjectPreviewCovers/Nochmal.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -38,13 +40,13 @@ export function Overview() {
     },
     {
       name: "Gib mir ein Zeichen",
-      thumbnail: wip,
+      thumbnail: zeichen,
       description: "more cool",
       projectLink: "/gib-mir-ein-zeichen",
     },
     {
       name: "Nochmal",
-      thumbnail: wip,
+      thumbnail: nochmal,
       description: "",
       projectLink: "/nochmal",
     },
