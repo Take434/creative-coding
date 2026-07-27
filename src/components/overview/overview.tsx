@@ -84,6 +84,12 @@ export function Overview() {
       description: "",
       projectLink: "/verfolgt",
     },
+    {
+      name: "Spiegelbild",
+      thumbnail: wip,
+      description: "",
+      projectLink: "/spiegelbild",
+    },
   ];
 
   return (

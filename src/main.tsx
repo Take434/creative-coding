@@ -23,6 +23,7 @@ import { Zusammensetzung } from "@/projects/9_zusammensetzung/zusammensetzung";
 import { Disconnect } from "@/projects/10_disconnect/disconnect";
 import { Klartext } from "@/projects/11_klartext/klartext";
 import { Verfolgt } from "@/projects/12_verfolgt/verfolgt";
+import { Spiegelbild } from "@/projects/13_spiegelbild/spiegelbild";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -115,6 +116,12 @@ const verfolgtRoute = createRoute({
   component: Verfolgt,
 });
 
+const spiegelbildRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "spiegelbild",
+  component: Spiegelbild,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   farbfleckRoute,
@@ -130,6 +137,7 @@ const routeTree = rootRoute.addChildren([
   disconnectRoute,
   klartextRoute,
   verfolgtRoute,
+  spiegelbildRoute,
 ]);
 
 const hashHistory = createHashHistory();
