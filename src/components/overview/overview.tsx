@@ -11,6 +11,7 @@ import wip from "../../assets/ProjectPreviewCovers/wip.jpg";
 import zusammensetzung from "../../assets/ProjectPreviewCovers/Zusammensetzung.png";
 import zeichen from "../../assets/ProjectPreviewCovers/Zeichen.png";
 import nochmal from "../../assets/ProjectPreviewCovers/Nochmal.png";
+import wachstum from "../../assets/ProjectPreviewCovers/wachstum.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -52,7 +53,7 @@ export function Overview() {
     },
     {
       name: "Wachstum",
-      thumbnail: wip,
+      thumbnail: wachstum,
       description: "",
       projectLink: "/wachstum",
     },
