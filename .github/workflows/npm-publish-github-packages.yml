@@ -23,7 +23,7 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: |
-          pnpm i --dangerously-allow-all-builds
+          pnpm i
           pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,6 +1,6 @@
 allowBuilds:
   core-js: true
-  ml5: true
+  ml5: false
   msw: true
   preact: true
 onlyBuiltDependencies:
