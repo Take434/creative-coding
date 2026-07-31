@@ -12,6 +12,8 @@ import zusammensetzung from "../../assets/ProjectPreviewCovers/Zusammensetzung.p
 import zeichen from "../../assets/ProjectPreviewCovers/zeichen.png";
 import nochmal from "../../assets/ProjectPreviewCovers/Nochmal.png";
 import wachstum from "../../assets/ProjectPreviewCovers/wachstum.png";
+import verfolgt from "../../assets/ProjectPreviewCovers/Verfolgt.png";
+import disconnect from "../../assets/ProjectPreviewCovers/Disconnect.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -71,7 +73,7 @@ export function Overview() {
     },
     {
       name: "Dis/Connect",
-      thumbnail: wip,
+      thumbnail: disconnect,
       description: "",
       projectLink: "/disconnect",
     },
@@ -83,7 +85,7 @@ export function Overview() {
     },
     {
       name: "Verfolgt",
-      thumbnail: wip,
+      thumbnail: verfolgt,
       description: "",
       projectLink: "/verfolgt",
     },
