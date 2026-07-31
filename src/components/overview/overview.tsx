@@ -14,6 +14,7 @@ import nochmal from "../../assets/ProjectPreviewCovers/Nochmal.png";
 import wachstum from "../../assets/ProjectPreviewCovers/wachstum.png";
 import verfolgt from "../../assets/ProjectPreviewCovers/Verfolgt.png";
 import disconnect from "../../assets/ProjectPreviewCovers/Disconnect.png";
+import spiegelbild from "../../assets/ProjectPreviewCovers/Spiegelbild.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -91,7 +92,7 @@ export function Overview() {
     },
     {
       name: "Spiegelbild",
-      thumbnail: wip,
+      thumbnail: spiegelbild,
       description: "",
       projectLink: "/spiegelbild",
     },
