@@ -7,7 +7,6 @@ import unwahrscheinlich from "../../assets/ProjectPreviewCovers/Unwahrscheinlich
 import loop from "../../assets/ProjectPreviewCovers/Loop.png";
 import fokus from "../../assets/ProjectPreviewCovers/FokusCover.png";
 import unterbrechung from "../../assets/ProjectPreviewCovers/Unterbrechung.png";
-import wip from "../../assets/ProjectPreviewCovers/wip.jpg";
 import zusammensetzung from "../../assets/ProjectPreviewCovers/Zusammensetzung.png";
 import zeichen from "../../assets/ProjectPreviewCovers/zeichen.png";
 import nochmal from "../../assets/ProjectPreviewCovers/Nochmal.png";
@@ -15,6 +14,7 @@ import wachstum from "../../assets/ProjectPreviewCovers/wachstum.png";
 import verfolgt from "../../assets/ProjectPreviewCovers/Verfolgt.png";
 import disconnect from "../../assets/ProjectPreviewCovers/Disconnect.png";
 import spiegelbild from "../../assets/ProjectPreviewCovers/Spiegelbild.png";
+import klartext from "../../assets/ProjectPreviewCovers/Klartext.png";
 
 export function Overview() {
   const previews: ProjectPreviewProps[] = [
@@ -80,7 +80,7 @@ export function Overview() {
     },
     {
       name: "Klartext",
-      thumbnail: wip,
+      thumbnail: klartext,
       description: "",
       projectLink: "/klartext",
     },
