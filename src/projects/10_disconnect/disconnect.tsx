@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 const { Engine, Render, Runner, Bodies, Body, Composite, Constraint } = Matter;
 
@@ -260,24 +262,27 @@ export function Disconnect() {
   }, []);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      <canvas
-        ref={canvasRef}
+    <>
+      <div
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
+          position: "relative",
+          width: "100vw",
+          height: "94vh",
+          overflow: "hidden",
         }}
-      />
-    </div>
+      >
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

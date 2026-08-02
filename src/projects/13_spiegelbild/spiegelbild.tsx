@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import paper from "paper";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
-// Create a simplified flower shape
 function createFlower(
   center: paper.Point,
   size: number,
@@ -9,7 +10,6 @@ function createFlower(
 ): paper.CompoundPath {
   const paths: paper.Path[] = [];
 
-  // Create petals
   for (let i = 0; i < petalCount; i++) {
     const angle = (i / petalCount) * Math.PI * 2;
     const petalLength = size * 0.8;
@@ -26,14 +26,12 @@ function createFlower(
     paths.push(petal);
   }
 
-  // Create center
   const centerCircle = new paper.Path.Circle({
     center: center,
     radius: size * 0.2,
   });
   paths.push(centerCircle);
 
-  // Combine into compound path
   const compound = new paper.CompoundPath({
     children: paths,
     fillColor: new paper.Color("#000000"),
@@ -42,7 +40,6 @@ function createFlower(
   return compound;
 }
 
-// Get brightness of a pixel (0-255)
 function getBrightness(
   imageData: ImageData,
   x: number,
@@ -53,11 +50,10 @@ function getBrightness(
   const r = imageData.data[index];
   const g = imageData.data[index + 1];
   const b = imageData.data[index + 2];
-  // Luminance formula
+
   return 0.299 * r + 0.587 * g + 0.114 * b;
 }
 
-// Generate stippled image with flowers
 function generateStipple(
   canvas: HTMLCanvasElement,
   image: HTMLImageElement,
@@ -70,18 +66,15 @@ function generateStipple(
   const width = canvas.width;
   const height = canvas.height;
 
-  // White background
   const bg = new paper.Path.Rectangle(new paper.Rectangle(0, 0, width, height));
   bg.fillColor = new paper.Color("#ffffff");
 
-  // Calculate image dimensions to fit canvas while maintaining aspect ratio
   const scale = Math.min(width / image.width, height / image.height);
   const imgWidth = image.width * scale;
   const imgHeight = image.height * scale;
   const offsetX = (width - imgWidth) / 2;
   const offsetY = (height - imgHeight) / 2;
 
-  // Create temporary canvas to read image data
   const tempCanvas = document.createElement("canvas");
   tempCanvas.width = image.width;
   tempCanvas.height = image.height;
@@ -89,39 +82,30 @@ function generateStipple(
   tempCtx.drawImage(image, 0, 0);
   const imageData = tempCtx.getImageData(0, 0, image.width, image.height);
 
-  // Grid-based stippling with jitter
   const step = density;
 
   for (let y = step / 2; y < imgHeight; y += step) {
     for (let x = step / 2; x < imgWidth; x += step) {
-      // Map canvas position back to image coordinates
       const imgX = (x / imgWidth) * image.width;
       const imgY = (y / imgHeight) * image.height;
 
-      // Sample brightness at this point
       const brightness = getBrightness(imageData, imgX, imgY, image.width);
 
-      // Skip very bright areas (white)
       if (brightness > 240) continue;
 
-      // Calculate flower size based on darkness (darker = larger)
       const darkness = 1 - brightness / 255;
       const size = minSize + darkness * (maxSize - minSize);
 
-      // Skip very small flowers
       if (size < minSize * 0.5) continue;
 
-      // Add some jitter to position
       const jitterX = (Math.random() - 0.5) * step * 0.3;
       const jitterY = (Math.random() - 0.5) * step * 0.3;
 
       const canvasX = offsetX + x + jitterX;
       const canvasY = offsetY + y + jitterY;
 
-      // Random petal count (4-6)
       const petalCount = 4 + Math.floor(Math.random() * 3);
 
-      // Create and rotate flower
       const flower = createFlower(
         new paper.Point(canvasX, canvasY),
         size,
@@ -172,13 +156,11 @@ export function Spiegelbild() {
     paper.setup(canvas);
     paper.view.viewSize = new paper.Size(width, height);
 
-    // Draw initial background
     const bg = new paper.Path.Rectangle(
       new paper.Rectangle(0, 0, width, height),
     );
     bg.fillColor = new paper.Color("#f5f5f5");
 
-    // Instruction text
     new paper.PointText({
       point: new paper.Point(width / 2, height / 2),
       content: "Upload an image to begin",
@@ -224,117 +206,120 @@ export function Spiegelbild() {
   }, [image, density, minSize, maxSize]);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-        }}
-      />
+    <>
       <div
         style={{
-          position: "absolute",
-          top: 20,
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          gap: 15,
-          alignItems: "center",
-          padding: "15px 20px",
-          background: "rgba(255, 255, 255, 0.95)",
-          borderRadius: 12,
-          boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
-          zIndex: 10,
+          position: "relative",
+          width: "100vw",
+          height: "94vh",
+          overflow: "hidden",
         }}
       >
-        <label
+        <canvas
+          ref={canvasRef}
           style={{
-            padding: "10px 20px",
-            background: "#333",
-            color: "#fff",
-            borderRadius: 8,
-            cursor: "pointer",
-            fontWeight: "bold",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: 15,
+            alignItems: "center",
+            padding: "15px 20px",
+            background: "rgba(255, 255, 255, 0.95)",
+            borderRadius: 12,
+            boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+            zIndex: 10,
           }}
         >
-          Upload Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            style={{ display: "none" }}
-          />
-        </label>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <label style={{ fontSize: 12, color: "#666" }}>
-            Density: {density}
+          <label
+            style={{
+              padding: "10px 20px",
+              background: "#333",
+              color: "#fff",
+              borderRadius: 8,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            Upload Image
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              style={{ display: "none" }}
+            />
           </label>
-          <input
-            type="range"
-            min="6"
-            max="30"
-            value={density}
-            onChange={(e) => setDensity(Number(e.target.value))}
-            style={{ width: 100 }}
-          />
-        </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <label style={{ fontSize: 12, color: "#666" }}>
-            Min Size: {minSize}
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="8"
-            value={minSize}
-            onChange={(e) => setMinSize(Number(e.target.value))}
-            style={{ width: 100 }}
-          />
-        </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <label style={{ fontSize: 12, color: "#666" }}>
+              Density: {density}
+            </label>
+            <input
+              type="range"
+              min="6"
+              max="30"
+              value={density}
+              onChange={(e) => setDensity(Number(e.target.value))}
+              style={{ width: 100 }}
+            />
+          </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <label style={{ fontSize: 12, color: "#666" }}>
-            Max Size: {maxSize}
-          </label>
-          <input
-            type="range"
-            min="5"
-            max="25"
-            value={maxSize}
-            onChange={(e) => setMaxSize(Number(e.target.value))}
-            style={{ width: 100 }}
-          />
-        </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <label style={{ fontSize: 12, color: "#666" }}>
+              Min Size: {minSize}
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="8"
+              value={minSize}
+              onChange={(e) => setMinSize(Number(e.target.value))}
+              style={{ width: 100 }}
+            />
+          </div>
 
-        <button
-          onClick={regenerate}
-          disabled={!image}
-          style={{
-            padding: "10px 20px",
-            background: image ? "#333" : "#ccc",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            cursor: image ? "pointer" : "not-allowed",
-            fontWeight: "bold",
-          }}
-        >
-          Regenerate
-        </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <label style={{ fontSize: 12, color: "#666" }}>
+              Max Size: {maxSize}
+            </label>
+            <input
+              type="range"
+              min="5"
+              max="25"
+              value={maxSize}
+              onChange={(e) => setMaxSize(Number(e.target.value))}
+              style={{ width: 100 }}
+            />
+          </div>
+
+          <button
+            onClick={regenerate}
+            disabled={!image}
+            style={{
+              padding: "10px 20px",
+              background: image ? "#333" : "#ccc",
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              cursor: image ? "pointer" : "not-allowed",
+              fontWeight: "bold",
+            }}
+          >
+            Regenerate
+          </button>
+        </div>
       </div>
-    </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

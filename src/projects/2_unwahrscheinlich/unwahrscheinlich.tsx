@@ -10,6 +10,8 @@ import {
 } from "three";
 import { Slider } from "radix-ui";
 import { useState } from "react";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 export function Unwahrscheinlich() {
   const [roughness, setRoughness] = useState(10);
@@ -37,7 +39,7 @@ export function Unwahrscheinlich() {
         <OrbitControls />
         <Wrapper speed={speed} roughness={roughness} amplitude={amplitude} />
       </Canvas>
-      <div className="w-[20vw] flex flex-col gap-5">
+      <div className="w-[20vw] flex flex-col gap-5 mt-25">
         <div className="flex flex-col mx-auto gap-2">
           <p>Roughness</p>
           <Slider.Root
@@ -95,6 +97,7 @@ export function Unwahrscheinlich() {
           <p>Mouse Wheel - Hold: Stronger Zoom</p>
         </div>
       </div>
+      <ProjectDescription {...content} />
     </div>
   );
 }

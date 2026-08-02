@@ -8,6 +8,8 @@ import {
   type RectangleCorners,
 } from "./handTracking";
 import { Polaroid } from "./Polaroid";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 const VIDEO_WIDTH = 640;
 const VIDEO_HEIGHT = 480;
@@ -253,59 +255,62 @@ export function Verfolgt() {
   });
 
   return (
-    <div className="relative w-full h-screen bg-neutral-900 overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="relative"
-          style={{ width: VIDEO_WIDTH, height: VIDEO_HEIGHT }}
-        >
-          <video
-            ref={videoRef}
-            width={VIDEO_WIDTH}
-            height={VIDEO_HEIGHT}
-            playsInline
-            muted
-            className="absolute opacity-0"
-          />
-          <canvas
-            ref={canvasRef}
-            width={VIDEO_WIDTH}
-            height={VIDEO_HEIGHT}
-            className="rounded-lg shadow-xl"
-            style={{
-              filter: isCapturing ? "brightness(2)" : "none",
-              transition: "filter 0.1s",
-            }}
-          />
-          {isCapturing && (
-            <div className="absolute inset-0 bg-white opacity-80 rounded-lg animate-pulse" />
-          )}
-          {currentRectangle && !isCapturing && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
-              Hold thumb out, then curl to capture!
-            </div>
-          )}
+    <>
+      <div className="relative w-full h-[94vh] bg-neutral-900 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className="relative"
+            style={{ width: VIDEO_WIDTH, height: VIDEO_HEIGHT }}
+          >
+            <video
+              ref={videoRef}
+              width={VIDEO_WIDTH}
+              height={VIDEO_HEIGHT}
+              playsInline
+              muted
+              className="absolute opacity-0"
+            />
+            <canvas
+              ref={canvasRef}
+              width={VIDEO_WIDTH}
+              height={VIDEO_HEIGHT}
+              className="rounded-lg shadow-xl"
+              style={{
+                filter: isCapturing ? "brightness(2)" : "none",
+                transition: "filter 0.1s",
+              }}
+            />
+            {isCapturing && (
+              <div className="absolute inset-0 bg-white opacity-80 rounded-lg animate-pulse" />
+            )}
+            {currentRectangle && !isCapturing && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+                Hold thumb out, then curl to capture!
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      {photos.map((photo, i) => (
-        <div
-          key={i}
-          className="absolute transition-all duration-500"
-          style={{
-            left: photoPositions[i].left,
-            top: photoPositions[i].top,
-            zIndex: i + 10,
-          }}
-        >
-          <Polaroid imageUrl={photo} />
-        </div>
-      ))}
-      {photos.length > 0 && (
-        <div className="absolute top-4 left-4 bg-white text-black p-2 rounded z-50">
-          Photos taken: {photos.length}
-        </div>
-      )}
-    </div>
+        {photos.map((photo, i) => (
+          <div
+            key={i}
+            className="absolute transition-all duration-500"
+            style={{
+              left: photoPositions[i].left,
+              top: photoPositions[i].top,
+              zIndex: i + 10,
+            }}
+          >
+            <Polaroid imageUrl={photo} />
+          </div>
+        ))}
+        {photos.length > 0 && (
+          <div className="absolute top-4 left-4 bg-white text-black p-2 rounded z-50">
+            Photos taken: {photos.length}
+          </div>
+        )}
+      </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

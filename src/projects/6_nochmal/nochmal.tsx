@@ -6,6 +6,8 @@ import {
   expandGrammar,
   type GrammarRules,
 } from "@/projects/6_nochmal/grammar";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 type Size = {
   width: number;
@@ -90,74 +92,83 @@ export function Nochmal() {
   }, [size.height, size.width, axiom, rules, options, repetitions, generation]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#f6f1e8]">
-      <canvas
-        ref={canvasRef}
-        width={size.width}
-        height={size.height}
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "block",
-        }}
-      />
-      <div className="absolute left-5 top-5 max-w-md rounded-md bg-[#f6f1e8]/90 px-4 py-3 text-[#13212e] shadow-sm backdrop-blur-sm">
-        <div className="text-sm font-semibold">L-System Grammar</div>
-        <div className="mt-1 text-xs leading-5">
-          <div>Axiom: {axiom}</div>
-          <div>Rules:</div>
-          <ul className="ml-4 list-disc">
-            {Object.entries(rules).map(([key, value]) => (
-              <li key={key}>
-                {key} → {value}
-              </li>
-            ))}
-          </ul>
-          <div>Repetitions: {repetitions}</div>
-          <div>Angle jitter: ±{options.randomAngleJitter}° per line</div>
-          <div>Press Space to regenerate</div>
-        </div>
-        <div className="mt-4 space-y-3">
-          <label className="block text-xs font-medium">
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <span>Angle jitter</span>
-              <span>{randomAngleJitter}°</span>
-            </div>
-            <Slider.Root
-              className="SliderRoot w-full"
-              value={[randomAngleJitter]}
-              max={360}
-              min={0}
-              step={1}
-              onValueChange={(value) => setRandomAngleJitter(value[0] ?? 0)}
-            >
-              <Slider.Track className="SliderTrack">
-                <Slider.Range className="SliderRange" />
-              </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Angle jitter" />
-            </Slider.Root>
-          </label>
-          <label className="block text-xs font-medium">
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <span>Repetitions</span>
-              <span>{repetitions}</span>
-            </div>
-            <Slider.Root
-              className="SliderRoot w-full"
-              value={[repetitions]}
-              max={8}
-              min={3}
-              step={1}
-              onValueChange={(value) => setRepetitions(value[0] ?? 3)}
-            >
-              <Slider.Track className="SliderTrack">
-                <Slider.Range className="SliderRange" />
-              </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Repetitions" />
-            </Slider.Root>
-          </label>
+    <>
+      <div className="relative h-[94vh] w-screen overflow-hidden bg-[#f6f1e8]">
+        <canvas
+          ref={canvasRef}
+          width={size.width}
+          height={size.height}
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "block",
+          }}
+        />
+        <div className="absolute left-5 top-5 max-w-md rounded-md bg-[#f6f1e8]/90 px-4 py-3 text-[#13212e] shadow-sm backdrop-blur-sm">
+          <div className="text-sm font-semibold">L-System Grammar</div>
+          <div className="mt-1 text-xs leading-5">
+            <div>Axiom: {axiom}</div>
+            <div>Rules:</div>
+            <ul className="ml-4 list-disc">
+              {Object.entries(rules).map(([key, value]) => (
+                <li key={key}>
+                  {key} → {value}
+                </li>
+              ))}
+            </ul>
+            <div>Repetitions: {repetitions}</div>
+            <div>Angle jitter: ±{options.randomAngleJitter}° per line</div>
+            <div>Press Space to regenerate</div>
+          </div>
+          <div className="mt-4 space-y-3">
+            <label className="block text-xs font-medium">
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span>Angle jitter</span>
+                <span>{randomAngleJitter}°</span>
+              </div>
+              <Slider.Root
+                className="SliderRoot w-full"
+                value={[randomAngleJitter]}
+                max={360}
+                min={0}
+                step={1}
+                onValueChange={(value) => setRandomAngleJitter(value[0] ?? 0)}
+              >
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <Slider.Thumb
+                  className="SliderThumb"
+                  aria-label="Angle jitter"
+                />
+              </Slider.Root>
+            </label>
+            <label className="block text-xs font-medium">
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span>Repetitions</span>
+                <span>{repetitions}</span>
+              </div>
+              <Slider.Root
+                className="SliderRoot w-full"
+                value={[repetitions]}
+                max={8}
+                min={3}
+                step={1}
+                onValueChange={(value) => setRepetitions(value[0] ?? 3)}
+              >
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <Slider.Thumb
+                  className="SliderThumb"
+                  aria-label="Repetitions"
+                />
+              </Slider.Root>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

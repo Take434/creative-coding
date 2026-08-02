@@ -2,6 +2,8 @@ import { loopFrag } from "@/projects/3_loop/fragmentshader";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Vector2 } from "three";
+import { content } from "./description";
+import { ProjectDescription } from "@/components/project-description/project-description";
 
 const vertex = `
 void main() {
@@ -17,6 +19,7 @@ export function Loop() {
         <Shader />
       </Canvas>
       <div className="h-[80vh] ml-2"></div>
+      <ProjectDescription {...content} />
     </div>
   );
 }

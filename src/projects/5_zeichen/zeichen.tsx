@@ -1,5 +1,7 @@
 import paper from "paper";
 import { useEffect, useRef, useState } from "react";
+import { content } from "./description";
+import { ProjectDescription } from "@/components/project-description/project-description";
 
 type Size = {
   width: number;
@@ -300,31 +302,34 @@ export function Zeichen() {
   }, [size.height, size.width]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#1b252f]">
-      <canvas
-        ref={canvasRef}
-        width={size.width}
-        height={size.height}
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "block",
-          touchAction: "none",
-        }}
-      />
-      <canvas
-        ref={fogCanvasRef}
-        width={size.width}
-        height={size.height}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100vw",
-          height: "100vh",
-          display: "block",
-          touchAction: "none",
-        }}
-      />
-    </div>
+    <>
+      <div className="relative h-[94vh] w-screen overflow-hidden bg-[#1b252f]">
+        <canvas
+          ref={canvasRef}
+          width={size.width}
+          height={size.height}
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "block",
+            touchAction: "none",
+          }}
+        />
+        <canvas
+          ref={fogCanvasRef}
+          width={size.width}
+          height={size.height}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100vw",
+            height: "100vh",
+            display: "block",
+            touchAction: "none",
+          }}
+        />
+      </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

@@ -9,6 +9,8 @@ import {
   shufflePoints,
   type CircleBody,
 } from "./wachstum-helpers";
+import { content } from "./description";
+import { ProjectDescription } from "@/components/project-description/project-description";
 
 type Size = {
   width: number;
@@ -230,87 +232,96 @@ export function Wachstum() {
   }, [basePointRadius, pointAmount, size.height, size.width, spiralForce]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#10161f]">
-      <canvas
-        ref={canvasRef}
-        width={size.width}
-        height={size.height}
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "block",
-        }}
-      />
-      <div className="absolute left-5 top-5 max-w-md rounded-md bg-[#10161f]/80 px-4 py-3 text-[#e9f0f5] shadow-sm backdrop-blur-sm">
-        <div className="text-sm font-semibold">Wachstum</div>
-        <div className="mt-1 text-xs leading-5">
-          <div>Spiral force: {spiralForce.toFixed(3)}</div>
-          <div>Point amount: {pointAmount}</div>
-          <div>Base point radius: {basePointRadius}px</div>
-        </div>
-        <div className="mt-4 space-y-3">
-          <label className="block text-xs font-medium">
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <span>Spiral force</span>
-              <span>{spiralForce.toFixed(3)}</span>
-            </div>
-            <Slider.Root
-              className="SliderRoot w-full"
-              value={[spiralForce]}
-              max={0.2}
-              min={0.01}
-              step={0.005}
-              onValueChange={(value) => setSpiralForce(value[0] ?? 0.08)}
-            >
-              <Slider.Track className="SliderTrack">
-                <Slider.Range className="SliderRange" />
-              </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Spiral force" />
-            </Slider.Root>
-          </label>
-          <label className="block text-xs font-medium">
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <span>Point amount</span>
-              <span>{pointAmount}</span>
-            </div>
-            <Slider.Root
-              className="SliderRoot w-full"
-              value={[pointAmount]}
-              max={180}
-              min={10}
-              step={1}
-              onValueChange={(value) => setPointAmount(value[0] ?? 88)}
-            >
-              <Slider.Track className="SliderTrack">
-                <Slider.Range className="SliderRange" />
-              </Slider.Track>
-              <Slider.Thumb className="SliderThumb" aria-label="Point amount" />
-            </Slider.Root>
-          </label>
-          <label className="block text-xs font-medium">
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <span>Base point radius</span>
-              <span>{basePointRadius}px</span>
-            </div>
-            <Slider.Root
-              className="SliderRoot w-full"
-              value={[basePointRadius]}
-              max={30}
-              min={4}
-              step={1}
-              onValueChange={(value) => setBasePointRadius(value[0] ?? 12)}
-            >
-              <Slider.Track className="SliderTrack">
-                <Slider.Range className="SliderRange" />
-              </Slider.Track>
-              <Slider.Thumb
-                className="SliderThumb"
-                aria-label="Base point radius"
-              />
-            </Slider.Root>
-          </label>
+    <>
+      <div className="relative h-[94vh] w-screen overflow-hidden bg-[#10161f]">
+        <canvas
+          ref={canvasRef}
+          width={size.width}
+          height={size.height}
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "block",
+          }}
+        />
+        <div className="absolute left-5 top-5 max-w-md rounded-md bg-[#10161f]/80 px-4 py-3 text-[#e9f0f5] shadow-sm backdrop-blur-sm">
+          <div className="text-sm font-semibold">Wachstum</div>
+          <div className="mt-1 text-xs leading-5">
+            <div>Spiral force: {spiralForce.toFixed(3)}</div>
+            <div>Point amount: {pointAmount}</div>
+            <div>Base point radius: {basePointRadius}px</div>
+          </div>
+          <div className="mt-4 space-y-3">
+            <label className="block text-xs font-medium">
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span>Spiral force</span>
+                <span>{spiralForce.toFixed(3)}</span>
+              </div>
+              <Slider.Root
+                className="SliderRoot w-full"
+                value={[spiralForce]}
+                max={0.2}
+                min={0.01}
+                step={0.005}
+                onValueChange={(value) => setSpiralForce(value[0] ?? 0.08)}
+              >
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <Slider.Thumb
+                  className="SliderThumb"
+                  aria-label="Spiral force"
+                />
+              </Slider.Root>
+            </label>
+            <label className="block text-xs font-medium">
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span>Point amount</span>
+                <span>{pointAmount}</span>
+              </div>
+              <Slider.Root
+                className="SliderRoot w-full"
+                value={[pointAmount]}
+                max={180}
+                min={10}
+                step={1}
+                onValueChange={(value) => setPointAmount(value[0] ?? 88)}
+              >
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <Slider.Thumb
+                  className="SliderThumb"
+                  aria-label="Point amount"
+                />
+              </Slider.Root>
+            </label>
+            <label className="block text-xs font-medium">
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span>Base point radius</span>
+                <span>{basePointRadius}px</span>
+              </div>
+              <Slider.Root
+                className="SliderRoot w-full"
+                value={[basePointRadius]}
+                max={30}
+                min={4}
+                step={1}
+                onValueChange={(value) => setBasePointRadius(value[0] ?? 12)}
+              >
+                <Slider.Track className="SliderTrack">
+                  <Slider.Range className="SliderRange" />
+                </Slider.Track>
+                <Slider.Thumb
+                  className="SliderThumb"
+                  aria-label="Base point radius"
+                />
+              </Slider.Root>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+      <ProjectDescription {...content} />
+    </>
   );
 }

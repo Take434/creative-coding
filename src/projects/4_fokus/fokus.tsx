@@ -2,6 +2,8 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { Frustum, Matrix4, Mesh, Vector3 } from "three";
+import { content } from "./description";
+import { ProjectDescription } from "@/components/project-description/project-description";
 
 type sphere = {
   id: string;
@@ -71,6 +73,7 @@ export function Fokus() {
         ))}
       </Canvas>
       <div className="h-[80vh] ml-2"></div>
+      <ProjectDescription {...content} />
     </div>
   );
 }

@@ -12,6 +12,8 @@ import {
   ColorPickerSelection,
 } from "@/components/kibo-ui/color-picker";
 import { Button } from "@/components/ui/button";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 const vertex = `
 void main() {
@@ -125,6 +127,7 @@ export function Farbfleck() {
           Generate
         </Button>
       </div>
+      <ProjectDescription {...content} />
     </div>
   );
 }

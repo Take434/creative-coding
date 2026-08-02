@@ -2,6 +2,8 @@ import { Boids } from "@/projects/8_unterbrechung/boids";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Quaternion } from "three";
+import { ProjectDescription } from "@/components/project-description/project-description";
+import { content } from "./description";
 
 const playingField = 50;
 
@@ -32,6 +34,7 @@ export function Unterbrechung() {
         <Boids playingField={playingField} />
       </Canvas>
       <div className="h-[80vh] ml-2"></div>
+      <ProjectDescription {...content} />
     </div>
   );
 }

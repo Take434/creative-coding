@@ -21,31 +21,31 @@ export function Overview() {
     {
       name: "Farbfleck",
       thumbnail: farbfleck,
-      description: "Cool Project",
+      description: "",
       projectLink: "/farbfleck",
     },
     {
       name: "Unwahrscheinlich",
       thumbnail: unwahrscheinlich,
-      description: "Another cool project",
+      description: "",
       projectLink: "/unwahrscheinlich",
     },
     {
       name: "Loop",
       thumbnail: loop,
-      description: "Woow, so cool",
+      description: "",
       projectLink: "/loop",
     },
     {
       name: "Fokus",
       thumbnail: fokus,
-      description: "more cool",
+      description: "",
       projectLink: "/fokus",
     },
     {
       name: "Gib mir ein Zeichen",
       thumbnail: zeichen,
-      description: "more cool",
+      description: "",
       projectLink: "/gib-mir-ein-zeichen",
     },
     {
